@@ -47,7 +47,7 @@ const ResetPassword = ({match}) => {
 
     useEffect(() => {
         init(token);
-    });
+    }, []);
 
     const handleChange = name => e => {
         setValues({ ...values, error: false, [name]: e.target.value });

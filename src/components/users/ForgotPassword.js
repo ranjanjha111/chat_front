@@ -5,7 +5,7 @@ import { recoverPassword } from '../auth';
 
 const ForgotPassword = () => {
     const [values, setValues] = useState({
-        email: 'ranjanjha111@gmail.com',
+        email: '',
         error: '',
         success: false
     });
