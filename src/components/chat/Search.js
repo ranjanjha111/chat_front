@@ -1,9 +1,14 @@
 import React from "react";
 
-const Search = () => {
+const Search = ({ searchUser }) => {
+
     return (
         <div id="search-container">
-            <input type="text" placeholder="search" />
+            <input 
+                type="text"
+                placeholder="search"
+                onChange={(e) => searchUser(e.target.value)}
+            />
         </div>
     );
 

@@ -28,7 +28,6 @@ class MessageList extends Component {
             messageClass = from._id === message.from ? 'you-message' : 'other-message';
 
             if(message.type === 'text') {
-                console.log(`${message.type}: ${message.message}`)
                 return <TextMessage key={index} message={message} messageClass={messageClass} />
             } else if(message.message.split('.').pop() !== 'mp4'){
                 console.log(`image: ${message.message}`)

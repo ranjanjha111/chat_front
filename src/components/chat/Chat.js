@@ -11,7 +11,7 @@ import MessageList from './MessageList';
 import './chat.css';
 
 class Chat extends Component {
-    state = { token: null, profile: {}, users: [], selectedUserId: undefined, selectedUser: {}, messages: []}
+    state = { loading: false, token: null, search: '', profile: {}, users: [], selectedUserId: undefined, selectedUser: {}, messages: []}
     socket = io(process.env.REACT_APP_API_URL, {transports: ['websocket', 'polling', 'flashsocket']});
 
     componentDidMount() {
@@ -29,14 +29,23 @@ class Chat extends Component {
             console.log('joining room')
             this.socket.emit('join', { _id: user._id });
 
+            this.setState({loading: true})
             getUsers(token).then( users => {
-                this.setState({users})
+                this.setState({users, loading: false})
             }).catch(error => {
                 console.log('Error in fetching chat users')
             })
         });
         
         // this.setState({isMounted: true})
+    }
+
+    searchUser = (searchTerm) => {
+        getUsers(this.state.token, searchTerm).then( users => {
+            this.setState({users})
+        }).catch(error => {
+            console.log('Error in fetching chat users')
+        })
     }
 
     componentDidUpdate(props, state) {
@@ -120,11 +129,13 @@ class Chat extends Component {
         return (
             <Layout className="chat-wrapper">
                 <div id="chat-container">
-                    <Search />
+                    <Search searchUser={this.searchUser} />
                     <UserList 
                         selectedUserId={this.state.selectedUserId}
                         users={this.state.users} 
-                        userSelect={this.onUserSelect} />                    
+                        userSelect={this.onUserSelect}
+                        loading={this.state.loading}
+                    />
                     { this.renderMessageList() }
                     { this.renderChatForm()  } 
                 </div>

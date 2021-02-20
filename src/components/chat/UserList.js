@@ -8,11 +8,16 @@ class UserList extends Component {
     }
 
     renderUserList = () => {
-        const {users} = this.props;
+        const {users, loading} = this.props;
 
-        if(users.length === 0) {
+        if(loading) {
             return 'Loading...'
+        } else if(!users.length) {
+            return (
+                <div className="title-text" style={{padding: "25px", fontSize: "1.3rem"}}>User not found.</div>
+            )
         }
+
 
         let selectedClass = '';
         return users.map( (user, index) => {

@@ -9,7 +9,6 @@ const TextMessage = ({ message, messageClass }) => {
                 <div className="message-text">
                     <Linkify>{message.message}</Linkify>
                 </div>
-                {/* <div className="message-text">{ message.message }</div> */}
                 <div className="message-time">{ moment(message.createdAt).format('LT') }</div>
             </div>
         </div>

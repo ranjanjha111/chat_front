@@ -49,8 +49,12 @@ export const getChats = (token, userId) => {
         .catch(err => console.log(err));
 };
 
-export const getUsers = (token) => {
-    return fetch(`${API}/chat/users`, {
+export const getUsers = (token, name='') => {
+    let queryString = ''
+    if(name) {
+        queryString = `?name=${name}`
+    }
+    return fetch(`${API}/chat/users${queryString}`, {
         method: "GET",
         headers: {
             Accept: "application/json",
@@ -59,7 +63,13 @@ export const getUsers = (token) => {
         }
     })
         .then(response => {
-            return response.json();
+            return response.json().then(users => {
+                console.log(users)
+                if(users.length) {
+                    return users
+                }
+                return []
+            });
         })
         .catch(err => console.log(err));
 };
