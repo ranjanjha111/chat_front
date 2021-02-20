@@ -247,6 +247,11 @@ body {
     border-radius: 14px 14px 0 14px;
 }
 
+.you-message .message-text a {
+    color: #eee;
+    text-decoration: underline;
+}
+
 .other-message .message-text {
     background: #ddd;
     color: #111;
