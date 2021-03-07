@@ -64,7 +64,6 @@ export const getUsers = (token, name='') => {
     })
         .then(response => {
             return response.json().then(users => {
-                console.log(users)
                 if(users.length) {
                     return users
                 }

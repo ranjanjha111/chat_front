@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 import Layout from '../core/Layout';
 import { signup } from '../auth';
+import { Link } from 'react-router-dom';
 
 class Signup extends Component {
     state = {
@@ -25,17 +26,17 @@ class Signup extends Component {
 
     verifySingupButton = () => {
         const { name, email, password, company, country, tc } = this.state;
-        if(name && email && password && company && country && tc) {
+        if (name && email && password && company && country && tc) {
             console.log(this.state)
-            this.setState({isDisabled: false})
-        }else {
-            this.setState({isDisabled: true})
+            this.setState({ isDisabled: false })
+        } else {
+            this.setState({ isDisabled: true })
         }
     }
 
     handleBlur = (event) => {
         const { password, confirm_password } = this.state;
-        if(password !== confirm_password) {
+        if (password !== confirm_password) {
             this.setState({ error: 'Confirm password not match with password.', success: false });
         }
 
@@ -43,10 +44,10 @@ class Signup extends Component {
     };
 
     handleCheckBox = (event) => {
-        this.setState({tc: event.target.checked}, () => {
+        this.setState({ tc: event.target.checked }, () => {
             this.verifySingupButton()
         })
-        
+
     }
 
     clickSubmit = event => {
@@ -118,13 +119,15 @@ class Signup extends Component {
                 </div>
                 <div className="form-group">
                     {/* <input onChange={this.() => handleCheckBox(!term_and_condition)} type="checkbox" value={term_and_condition} /> */}
-                    <input 
-                        type="checkbox" 
+                    <input
+                        type="checkbox"
                         checked={tc}
                         onChange={this.handleCheckBox}
                     />
 
-                    <label className="text-muted"> &nbsp; Term & condition</label>
+                    <label className="text-muted">
+                        <Link to="term-and-conditions">&nbsp; Term & Conditions</Link>
+                    </label>
                 </div>
                 <button onClick={this.clickSubmit} disabled={isDisabled} className="btn btn-primary">
                     Sign Up
@@ -141,7 +144,7 @@ class Signup extends Component {
 
     showSuccess = () => (
         <div className="alert alert-info" style={{ display: this.state.success ? '' : 'none' }}>
-            Your account is created. An activation email has been sent. Please activate your account before login. 
+            Your account is created. An activation email has been sent. Please activate your account before login.
             {/* <Link to="/signin">Signin</Link> */}
         </div>
     );
@@ -161,7 +164,7 @@ class Signup extends Component {
                     </div>
                 </div>
             </Layout>
-        );    
+        );
     }
 }
 

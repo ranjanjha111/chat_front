@@ -11,7 +11,7 @@ const isActive = (history, path) => {
 };
 
 const Menu = ({ history }) => (
-    <div className="menu" style={{background: "linear-gradient(to right, #0048AA 0%, #57c1eb 100%)"}}>
+    <div className="menu" style={{ background: "linear-gradient(to right, #0048AA 0%, #57c1eb 100%)" }}>
         <ul className="nav nav-tabs">
             <li className="nav-item">
                 <Link
@@ -44,8 +44,31 @@ const Menu = ({ history }) => (
                             Chat
                         </Link>
                     </li>
-                </React.Fragment>                
+                </React.Fragment>
             )}
+
+            {
+                <React.Fragment>
+                    <li className="nav-item">
+                        <Link
+                            className="nav-link"
+                            style={isActive(history, "/about")}
+                            to="/about"
+                        >
+                            About
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link
+                            className="nav-link"
+                            style={isActive(history, "/contact")}
+                            to="/contact"
+                        >
+                            Contact
+                        </Link>
+                    </li>
+                </React.Fragment>
+            }
 
             {isAuthenticated() && isAuthenticated().user.role === 1 && (
                 <li className="nav-item">

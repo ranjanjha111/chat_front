@@ -67,13 +67,8 @@ class Chat extends Component {
         })
     }
 
-    componentWillUnmount() {
-        console.log('component unmounted.')
-    }
-
     getChatMessages = (userId) => {
         getChats(this.state.token, userId).then( chats => {
-            console.log(chats)
             this.setState({messages: chats})
         }).catch(error => {
             console.log('Error in fetching chats.')

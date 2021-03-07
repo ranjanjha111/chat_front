@@ -1,0 +1,9 @@
+.model {
+    min-height: 550px;
+}
+
+.content {
+    padding: 12px;
+    font-size: 1.6rem;
+    font-family: sans-serif;
+}

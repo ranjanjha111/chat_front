@@ -4,6 +4,9 @@ import Signin from './components/users/Signin'
 import Signup from './components/users/Signup';
 import AccountActivation from './components/users/AccountActivation'
 import Home from './components/core/Home';
+import About from './components/pages/About';
+import Contact from './components/contact/Contact';
+import TermAndCondition from './components/pages/TermAndCondition';
 import PrivateRoute from './components/auth/PrivateRoute';
 import Dashboard from './components/users/UserDashboard';
 import Profile from './components/users/Profile';
@@ -24,6 +27,10 @@ const Routes = () => {
                 <Route path='/activate/:token' exact component={AccountActivation} />
                 <Route path='/auth/recover' exact component={ForgotPassword} />
                 <Route path='/auth/reset/:token' exact component={ResetPassword} />
+                <Route path='/about' exact component={About} />
+                <Route path='/contact' exact component={Contact} />
+                <Route path='/term-and-conditions' exact component={TermAndCondition} />
+
                 <PrivateRoute path="/user/dashboard" exact component={Dashboard} />
                 <PrivateRoute path="/profile/:userId" exact component={Profile} />
                 <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
