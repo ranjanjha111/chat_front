@@ -7,8 +7,16 @@ const TextMessage = ({ message, messageClass }) => {
         <div className={`message-row ${messageClass}`}>
             <div className="message-content">
                 <div className="message-text">
-                    <Linkify>{message.message}</Linkify>
+                    <Linkify
+                        componentDecorator={(decoratedHref, decoratedText, key) => (
+                            <a target="blank" href={decoratedHref} key={key}>
+                                {decoratedText}
+                            </a>
+                        )}
+                    >{message.message}</Linkify>
+
                 </div>
+
                 <div className="message-time">{ moment(message.createdAt).format('LT') }</div>
             </div>
         </div>
